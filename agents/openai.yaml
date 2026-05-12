@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Monitor"
+  short_description: "Monitor GitHub issue replies and fetch latest comments."
+  default_prompt: "Use this skill when I ask you to watch a GitHub Issue, check whether it has new replies, or fetch the latest comments without expanding the whole conversation context."
