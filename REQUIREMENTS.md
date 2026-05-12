@@ -26,18 +26,18 @@ During long Issue-driven debugging sessions, repeatedly reading every comment ca
    - comment URL
    - body
 4. Avoid loading full Issue history when only the newest reply is needed.
-5. Provide clear script contracts so implementation can be added later without changing the Skill's user-facing behavior.
+5. Provide clear script contracts so future agents can use the behavior without loading full Issue history.
+6. Keep the AI-facing updates file delta-only; do not maintain a cumulative copy of the full Issue discussion.
 
 ## Non-Goals For This Commit
 
-- Do not implement the monitoring scripts yet.
 - Do not add GitHub write operations.
 - Do not build a daemon, scheduler, or background automation.
 - Do not persist real user credentials or tokens.
 
-## Future Script Interfaces
+## Script Interfaces
 
-The Skill should eventually call scripts shaped like:
+The Skill calls scripts shaped like:
 
 ```bash
 python scripts/check_issue_updates.py --repo OWNER/REPO --issue NUMBER --state-file PATH
@@ -46,9 +46,12 @@ python scripts/get_latest_comments.py --repo OWNER/REPO --issue NUMBER --since C
 
 The scripts should return JSON, not prose.
 
+Both scripts support `--updates-file PATH`, which overwrites the target file with only comments returned by the current run. `get_latest_comments.py` also supports `--state-file PATH --update-state` to advance a local checkpoint after successful processing.
+
 ## Acceptance Criteria
 
 - The repository contains a valid `SKILL.md`.
 - The Skill description clearly triggers on GitHub Issue monitoring and latest-reply workflows.
 - A requirements document captures scope, non-goals, and future script contracts.
-- The repository is initialized with git and the initial planning commit is created.
+- The repository contains executable script implementations for checking issue updates and fetching bounded latest comments.
+- The repository provides `python verify_dependencies.py` for workspace integration.
