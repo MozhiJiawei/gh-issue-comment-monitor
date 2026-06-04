@@ -1,0 +1,13 @@
+schema_version: 1
+name: gh-issue-comment-monitor
+title: GitHub Issue 评论监控
+description: 只读取相对本地 checkpoint 的新增 Issue 评论，避免重复加载完整讨论历史。
+entry: docs/index.md
+nav:
+  - title: 概览
+    path: docs/index.md
+  - title: 使用方式
+    path: docs/usage.md
+  - title: 参考
+    path: docs/reference.md
+status: bootstrap

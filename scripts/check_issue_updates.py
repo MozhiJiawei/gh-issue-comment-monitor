@@ -51,7 +51,13 @@ def main() -> None:
             since_updated_at=since_updated_at,
             max_pages=args.max_pages,
         )
-        latest_comment = comments[-1] if comments else (fetch_latest_comments(args.repo, args.issue, 1)[-1] if not state else None)
+        if comments:
+            latest_comment = comments[-1]
+        elif not state:
+            latest_comments = fetch_latest_comments(args.repo, args.issue, 1)
+            latest_comment = latest_comments[-1] if latest_comments else None
+        else:
+            latest_comment = None
         recommended_state = checkpoint_from_comment(args.repo, args.issue, latest_comment) if latest_comment else state
 
         result = {
