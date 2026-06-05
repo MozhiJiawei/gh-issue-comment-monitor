@@ -4,10 +4,10 @@ title: GitHub Issue 评论监控
 description: 只读取相对本地 checkpoint 的新增 Issue 评论，避免重复加载完整讨论历史。
 entry: docs/index.md
 nav:
-  - title: 概览
-    path: docs/index.md
+  - title: 能力展示
+    path: docs/reference.md
   - title: 使用方式
     path: docs/usage.md
-  - title: 参考
-    path: docs/reference.md
+  - title: 架构概览
+    path: docs/index.md
 status: bootstrap
